@@ -44,7 +44,7 @@ const Register = () => {
 
                 <Form.Item >
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Conectarse
         </Button>
                 </Form.Item>
             </Form>

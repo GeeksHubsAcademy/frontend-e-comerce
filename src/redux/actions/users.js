@@ -15,3 +15,25 @@ export const login = async(credentials) => {
         payload: res.data.user
     });
 }
+export const updateProfile = async(user) => {
+    const res = await axios.put(API_URL + '/users', user, {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('authToken')
+        }
+    });
+    store.dispatch({
+        type: 'SET_USER',
+        payload: res.data
+    });
+}
+export const getUserInfo = async(user) => {
+    const res = await axios.get(API_URL + '/users/info', {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('authToken')
+        }
+    });
+    store.dispatch({
+        type: 'SET_USER',
+        payload: res.data
+    });
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Form, Input, Button, notification } from 'antd';
-import './Register.scss'
-import { register } from '../../../redux/actions/users';
+import './Profile.scss'
+import { updateProfile } from '../../../redux/actions/users';
 import { useHistory } from 'react-router-dom';
-const Register = () => {
+import { connect } from 'react-redux';
+const Profile = (props) => {
     const history = useHistory();
     const onFinish = user => {
-        register(user).then(() => {
-            notification.success({ message: 'Usuario registrado', description: 'Usuario registrado con éxito' })
+        updateProfile(user).then(() => {
+            notification.success({ message: 'Usuario actualizado', description: 'Usuario actualizado con éxito' })
             history.push('/login')
         })
          .catch(error => {
@@ -27,13 +28,14 @@ const Register = () => {
                 <Form.Item
                     label="Nombre"
                     name="name"
+                    initialValue={props.user?.name}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Email"
                     name="email"
-                    rules={[{ required: true, message: 'El email es requerido!' }]}
+                    initialValue={props.user?.email}
                 >
                     <Input />
                 </Form.Item>
@@ -41,18 +43,18 @@ const Register = () => {
                 <Form.Item
                     label="Contraseña"
                     name="password"
-                    rules={[{ required: true, message: 'La contraseña es requerida!' }]}
                 >
                     <Input.Password />
                 </Form.Item>
 
                 <Form.Item >
                     <Button type="primary" htmlType="submit">
-                        Registrarse
+                        Actualizar Perfil
         </Button>
                 </Form.Item>
             </Form>
         </div>
     );
 };
-export default Register
+const mapStateToProps =({user})=>({user:user.user});
+export default connect(mapStateToProps)(Profile) ;

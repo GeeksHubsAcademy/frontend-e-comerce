@@ -6,14 +6,14 @@ import { useHistory } from 'react-router-dom';
 const Register = () => {
     const history = useHistory();
     const onFinish = user => {
-        register(user).then(()=>{
-            notification.success({message:'Usuario registrado',description:'Usuario registrado con éxito'})
+        register(user).then(() => {
+            notification.success({ message: 'Usuario registrado', description: 'Usuario registrado con éxito' })
             history.push('/login')
         })
-        .catch(error=>{
-            console.error(error)
-            notification.error({message:'Error en registro',description:'Error al tratar de registrar al usuario'})
-        })
+         .catch(error => {
+                console.error(error)
+                notification.error({ message: 'Error en registro', description: 'Error al tratar de registrar al usuario' })
+         })
     };
 
     return (

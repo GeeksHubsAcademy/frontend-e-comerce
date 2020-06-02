@@ -9,7 +9,7 @@ const Profile = (props) => {
     const onFinish = user => {
         updateProfile(user).then(() => {
             notification.success({ message: 'Usuario actualizado', description: 'Usuario actualizado con éxito' })
-            history.push('/login')
+            history.push('/')
         })
          .catch(error => {
                 console.error(error)
